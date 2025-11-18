@@ -5,6 +5,9 @@ on:
     - cron: "0 */1 * * *"   # 1時間ごとに実行
   workflow_dispatch:         # 手動実行も可能
 
+permissions:
+  contents: write 
+
 jobs:
   run:
     runs-on: ubuntu-latest
