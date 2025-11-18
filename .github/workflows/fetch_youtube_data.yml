@@ -21,15 +21,20 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
+      - name: Convert notebooks to Python
+        run: pip install nbconvert
+             jupyter nbconvert --to script fetch_popular_videos.ipynb
+             jupyter nbconvert --to script fetch_statistics.ipynb
+              
       - name: Fetch Popular Videos
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        run: python fetch_polular_videos.ipynb
+        run: python fetch_polular_videos.py
 
       - name: Fetch Statistics for All Known Videos
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        run: python fetch_statistics.ipynb
+        run: python fetch_statistics.py
 
       - name: Commit & Push Results
         run: |
