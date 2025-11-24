@@ -6,7 +6,7 @@
 
 #ライブラリをimport
 import os
-from datetime import datetime
+import datetime
 
 import requests
 import json
@@ -26,7 +26,7 @@ def fetch_popular_videos():
     }
     res = requests.get(url, params=params)
     data = res.json()
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y%m%d_%H%M%S")
     os.makedirs("data/raw/popular_videos", exist_ok=True)
     path = f"data/raw/popular_videos/popular_videos_{timestamp}.json"
     with open(path, "w", encoding="utf-8") as f:

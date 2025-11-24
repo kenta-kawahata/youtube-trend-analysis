@@ -6,7 +6,7 @@
 
 #ライブラリをimport
 import os
-from datetime import datetime
+import datetime
 from glob import glob
 
 import requests
@@ -53,7 +53,7 @@ def fetch_video_statistics():
     }
     res = requests.get(url, params=params)
     data = res.json()
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y%m%d_%H%M%S")
     os.makedirs("data/raw/videos_statistics", exist_ok=True)
     path = f"data/raw/videos_statistics/video_statistics_{timestamp}.json"
     with open(path, "w", encoding="utf-8") as f:
@@ -70,7 +70,7 @@ def fetch_channel_statistics():
     }
     res = requests.get(url, params=params)
     data = res.json()
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y%m%d_%H%M%S")
     os.makedirs("data/raw/channels_statistics", exist_ok=True)
     path = f"data/raw/channels_statistics/channel_statistics_{timestamp}.json"
     with open(path, "w", encoding="utf-8") as f:
